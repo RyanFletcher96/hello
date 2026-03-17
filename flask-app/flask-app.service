@@ -1,0 +1,11 @@
+[Unit]
+Description=Running Calculator Flask App
+After=network.target
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/devops-lab-project/flask-app
+Environment="PATH=/home/ubuntu/devops-lab-project/flask-app/venv/bin"
+ExecStart=/home/ubuntu/devops-lab-project/flask-app/venv/bin/gunicorn --workers 3 --bind unix:app.sock -m 007 app:app
+[Install]
+WantedBy=multi-user.target
